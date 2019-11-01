@@ -1,0 +1,17 @@
+{% extends "mainLayout.html" %} {% block links %} {{super()}}
+<link rel="stylesheet" type="text/css" href="{{url_for( 'static',filename='menuStyles.css' ) }}"> {% endblock %} {% block scripts %} {{super()}}
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://d3js.org/d3-fetch.v1.min.js"></script>
+{% endblock %} {% block body %} {{super() }}
+<div class="menus">
+
+    <ul>
+        <label for="text">STOCKS AND CHARTS</label> {% if login %} {% else %}
+        <li><a href="/mutualFunds" class="{{mf_class}}">Mutual Funds</a></li>
+        <li><a href="/home" class="{{eq_class}}">Equity</a></li>
+        {% endif %}
+    </ul>
+
+</div>
+
+{% endblock %}

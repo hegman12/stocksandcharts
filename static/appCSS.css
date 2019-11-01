@@ -1,0 +1,185 @@
+body {
+    margin-left: 100px;
+    margin-right: 100px;
+    user-select: none;
+}
+
+h3 {
+    background-color: rgba(0, 217, 255, 0.274);
+    padding: 10px 10px 10px 10px;
+    font-family: Calibri;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.cinput {
+    display: block;
+    background: rgb(219, 232, 240, 0.5);
+    width: auto;
+    border-radius: 10px;
+}
+
+.cinput input[type="text"] {
+    border: 1px solid black;
+    display: inline-block;
+    height: 20px;
+    width: 300px;
+    border-radius: 10px;
+    padding: 5px 5px 5px 5px;
+}
+
+.cinput label {
+    display: inline-block;
+    padding: 5px 5px 5px 5px;
+    font-size: 15px;
+}
+
+.disabled {
+    visibility: hidden;
+}
+
+.enabled {
+    visibility: visible;
+}
+
+.tagCloud {
+    display: block;
+    padding: 5px 5px 5px 5px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.tagSelected {
+    background: rgba(104, 190, 243, 1);
+}
+
+div {
+    background: rgb(219, 232, 240, 0.5);
+}
+
+.tag {
+    display: inline-block;
+    min-width: 100px;
+    background: rgba(104, 190, 243, 0.3);
+    border-radius: 10px;
+    margin: 1px;
+}
+
+.tag label {
+    color: blue;
+    font-size: 15px;
+    display: block;
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+    word-break: break-all;
+    height: auto;
+    width: auto;
+    border-radius: 10px;
+}
+
+.tag:hover {
+    background: rgba(104, 190, 243, 1.0);
+    cursor: pointer;
+}
+
+.tag:active {
+    background: rgba(104, 190, 243, 1.0);
+    text-align: center;
+    opacity: 0.3;
+}
+
+.options {
+    display: block;
+    width: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 15px;
+    background: rgb(219, 232, 240, 0.5);
+    border-radius: 10px;
+    visibility: hidden;
+}
+
+.options label {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    padding: 10px 10px 10px 10px;
+}
+
+.qy {
+    display: inline-block;
+    width: 50px;
+    height: 10px;
+    background: rgba(104, 190, 243, 0.6);
+    margin: 5px 5px;
+    position: relative;
+    border-radius: 50px;
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
+}
+
+.qy label {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    position: absolute;
+    top: -6px;
+    left: -3px;
+    cursor: pointer;
+    background: #fcfff4;
+    background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    border-radius: 50px;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
+}
+
+.qy input[type=checkbox] {
+    display: inline-block;
+    visibility: hidden;
+}
+
+.qy input[type=checkbox]:checked+label {
+    left: 37px;
+}
+
+.qryr {
+    display: inline-block;
+    border-radius: 10px;
+    margin: 1px;
+}
+
+.qryr label {
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px;
+    background: rgba(104, 190, 243, 0.3);
+}
+
+#noOfQtr:hover label:active {
+    background: rgb(219, 232, 240, 0.7);
+}
+
+.graphPanel {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: block;
+    height: auto;
+    visibility: hidden;
+}
+
+.graph {
+    display: block;
+    height: 500px;
+    width: 100%;
+    position: relative;
+    margin: 5px 5px 5px 5px;
+}
+
+.dropdown-items {
+    display: inline-block;
+    border-radius: 10px;
+    background: rgb(207, 207, 245);
+    z-index: 2;
+    margin: 2px;
+}

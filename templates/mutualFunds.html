@@ -1,0 +1,47 @@
+{% extends "headingWithMenu.html" %} {% block links %} {{super()}}
+<link rel="stylesheet" type="text/css" href="{{url_for( 'static',filename='appCSS.css' ) }}">
+<link rel="stylesheet" type="text/css" href="{{url_for( 'static',filename='dropdownStyles.css' ) }}"> {% endblock %} {% block scripts %} {{super()}}
+
+<script>
+    var token = "{{tokenIn}}"
+</script>
+</scripts> {% endblock %} {% block body %} {{super()}}
+<div id="amcSelection">
+    <div class="dropdown">
+        <label for="text">AMC: </label>
+        <button id="amc1" class="dropbtn">Select AMC</button>
+        <div class="dropdown-content">
+            {% for amc in amcs%}
+            <a onclick="setAMC('amc1',{{amc.amc_id}},this)">{{amc.amc_name}}</a> {% endfor %}
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <label for="text">AMC to Compare: </label>
+        <button id="amc2" class="dropbtn">Select another AMC</button>
+        <div class="dropdown-content">
+            <a onclick="setAMC('amc2',0,this)">Select another AMC</a> {% for amc in amcs%}
+            <a onclick="setAMC('amc2',{{amc.amc_id}},this)">{{amc.amc_name}}</a> {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+<div id="schemeCategorySelection" class="tagCloud" style="visibility: hidden">
+</div>
+
+<div id="schemeNavSelection" class="tagCloud" style="visibility: hidden;display: block;background: none">
+    <div id="amc1s" style="width:49%;display: inline-block;border-radius: 10px"></div>
+
+    <div id="amc2s" style="width:50%;display: inline-block;border-radius: 10px"></div>
+</div>
+
+<div class="graphPanel" id="g1">
+    <svg id="graphOne" class="graph" height="900px" width="100%"></svg>
+</div>
+
+</body>
+<script src="{{url_for( 'static',filename='mutualFundScript.js' ) }}"></script>
+
+</html>
+{% endblock %}

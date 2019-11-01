@@ -1,0 +1,55 @@
+{% extends "headingWithMenu.html" %} {% block links %} {{super()}}
+<link rel="stylesheet" type="text/css" href="{{url_for( 'static',filename='appCSS.css' ) }}"> {% endblock %} {% block scripts %} {{super()}}
+<script>
+    var token = "{{tokenIn}}"
+</script>
+</scripts> {% endblock %} {% block body %} {{super()}}
+<div id="search" class="cinput">
+    <input id="companyName" type="text" autofocus placeholder="Search stocks" onkeyup="getSearchResults('mainSearchResults','companyName','p')"></input>
+    <label id="companyLabel" for="companyName"></label>
+    <input id="companyCompare" type="text" placeholder="Search another stock" class="disabled" onkeyup="getSearchResults('mainSearchResults','companyCompare','s')"></input>
+    <label id="compareLabel" for="companyCompare" class="disabled"></label>
+    <div id="mainSearchResults" class="disabled">
+    </div>
+</div>
+
+<div id="opt" class="options">
+
+    <label>Last: </label>
+    <div id="noOfQtr" class="qryr"> {% for name,id in qryr_labels %}
+        <label id="qrid{{id}}" tabindex="0" onclick="toggleqryrLabels('#qrid{{id}}')"> {{name}} 
+        </label> {% endfor %} </div>
+
+    <span><b>&#124;&#124;</b></span>
+
+    <label>Single stock view</label>
+    <div class="qy">
+        <input type="checkbox" tabindex="0" value="1" id="singleCompare" name="check" unchecked />
+        <label for="singleCompare" id="viewType" onclick="toggleCheckBox('singleCompare')"></label>
+    </div>
+    <label>compare stocks</label>
+
+    <span><b>&#124;&#124;</b></span>
+
+</div>
+
+<div id="resultCategory" class="tagCloud" style="visibility: hidden">
+
+</div>
+
+<div id="resultType" class="tagCloud" style="visibility: hidden">
+
+</div>
+
+<div class="graphPanel" id="g1">
+    <svg id="graphOne" class="graph" height="100%" width="100%"></svg>
+</div>
+<div class="graphPanel" id="g2">
+    <svg id="graphTwo" class="graph" height="100%" width="100%"></svg>
+</div>
+
+</body>
+<script src="{{url_for( 'static',filename='appScript.js' ) }}"></script>
+
+</html>
+{% endblock %}

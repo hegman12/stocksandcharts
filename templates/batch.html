@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3-fetch.v1.min.js"></script>
+    <style>
+        .login-page {
+            display: block;
+            top: 50%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .login-page button {
+            font-size: 1em;
+            background: lightgreen;
+            border-radius: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-left: 10px;
+            display: inline-block;
+        }
+        
+        .login-page label {
+            display: inline-block;
+            font-family: calibri;
+            font-size: 1em;
+        }
+        
+        .login-page input[type="text"] {
+            font-size: 1em;
+            font-family: calibri;
+            border: 1px solid;
+            margin-left: 10px;
+            display: inline-block;
+        }
+    </style>
+    <title>
+        STOCKS AND CHARTS
+    </title>
+</head>
+
+<body>
+    <div id="hdr">
+        <h3 id="l1">
+            STOCKS AND CHARTS
+        </h3>
+    </div>
+    <button id="batch0" onclick="callBatch()">Get</button>
+    <form id="login" method="POST">
+        <div class="login-page">
+            <input type="textarea" name="id1">
+
+            <button type="submit" id="batch1" formaction="http://localhost:5000/batch">Send</button>
+        </div>
+    </form>
+</body>
+<script>
+    var batch_size = 40
+    var counter = 0
+
+    function callBatch() {
+        console.log("calling")
+        var url = "https://www.nseindia.com/corporates/corpInfo/equities/getFinancialResults.jsp?start=" + counter + "&limit=" + batch_size + "&symbol=&industry=&period=Quarterly&broadcastPeriod=Last%201%20Month"
+        d3.json(url, {
+            "headers": {
+                "Access-Control-Allow-Origin": "http://localhost:5000",
+                "Origin": "www.nse.com",
+                "Accept-Encoding": "gzip, deflate, br"
+            }
+        }).then(function(data) {
+            console.log(data)
+            document.getElementById("id1").value = "data";
+            counter = counter + batch_size;
+            if (counter > data["results"]) {
+                document.getElementById("batch0").disabled = true
+            }
+        }).catch(function(error) {
+            console.log(error)
+        })
+
+    }
+</script>
+
+</html>

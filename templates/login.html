@@ -1,0 +1,32 @@
+{% extends "headingWithMenu.html" %} {% block styles %} {{super()}} {% endblock %} {% block links %} {{super()}}
+<link rel="stylesheet" type="text/css" href="{{url_for( 'static',filename='appCSS.css' ) }}">
+<link rel="stylesheet" type="text/css" href="{{url_for( 'static',filename='loginStyles.css' ) }}"> {% endblock %} {% block body %} {{super()}}
+
+<form id="login" method="POST">
+    <div class="login-page">
+        <label for="text" style="font-size: 1em; font-family: calibri;padding-bottom: 2em;text-align: center">{{message}}</label>
+        <br>
+        <label for="email" id="emailL">Email: </label>
+        <input type="text" name="emailInput" size=40 onkeyup="enableButton('go'); enableButton('register')">
+        <button type="submit" formaction="/home" id="go" disabled>Go</button>
+        <label for="email" id="instruction"> <span style="padding-left:10px"> Or enter Email and click </span></label>
+        <button type="submit" id="register" formaction="/register" disabled>Register</button>
+    </div>
+</form>
+</body>
+<script>
+    function enableButton(id) {
+        var email = document.getElementById("login").elements["emailInput"].value
+        if (validateEmail(email)) {
+            document.getElementById(id).disabled = false;
+        } else {
+            document.getElementById(id).disabled = true;
+        }
+    }
+
+    function validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+</script>
+{% endblock %}

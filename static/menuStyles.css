@@ -1,0 +1,50 @@
+.menus {
+    background: none;
+    margin: 0px;
+}
+
+.menus ul {
+    list-style-type: none;
+    padding: 0;
+    width: auto;
+    display: block;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    border-radius: 10px;
+    background-color: rgba(0, 217, 255, 0.274);
+}
+
+.menus li {
+    float: right;
+}
+
+.menus ul label {
+    width: 300px;
+    background-color: rgba(0, 217, 255, 0.274);
+    padding-left: 20px;
+    display: inline-block;
+    padding: 14px 16px;
+    font-family: Calibri;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.menus li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    height: auto;
+}
+
+.menus li a:hover:not(.active) {
+    background-color: rgba(104, 190, 243, 0.3);
+    border-radius: 10px;
+}
+
+.menus li a.active {
+    color: white;
+    background-color: rgba(104, 190, 243, 1);
+    border-radius: 10px;
+}
