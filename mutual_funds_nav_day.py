@@ -1,24 +1,13 @@
 import datetime
 from datetime import datetime as dtime
 import mysql.connector as db
-<<<<<<< HEAD
-from flask_mail import Mail,Message
-from flask import Flask
-import urllib.request
-from io import StringIO
-
-app = Flask(__name__)
-app.config["MAIL_USERNAME"]="communications@stocksandcharts.in"
-app.config["MAIL_PASSWORD"]="MLH*mlh1"
-=======
-import urllib.request as r
+import urllib
 from flask_mail import Mail,Message
 from flask import Flask
 
 app = Flask(__name__)
 app.config["MAIL_USERNAME"]="email"
 app.config["MAIL_PASSWORD"]="email pwd"
->>>>>>> 5b6022f3b41d8160d4f95947afba2202b86e13ca
 app.config["MAIL_SERVER"]="smtpout.secureserver.net"
 app.config["MAIL_PORT"]=465
 app.config["MAIL_USE_SSL"]=True
@@ -71,17 +60,10 @@ def get_todate(p):
 def get_db_connection():
     global con
     if con==None:
-<<<<<<< HEAD
         con=db.connect(host="localhost",user="stocks",password="stocks",auth_plugin='mysql_native_password',database="stocksdb")
         return con
     if not con.is_connected():
         con=db.connect(host="localhost",user="stocks",password="stocks",auth_plugin='mysql_native_password',database="stocksdb")
-=======
-        con=db.connect(host="localhost",user="<your user>",password="<your pwd>",auth_plugin='mysql_native_password',database="<your DB>")
-        return con
-    if not con.is_connected():
-        con=db.connect(host="localhost",user="<your user>",password="<your pwd>",auth_plugin='mysql_native_password',database="<your DB>")
->>>>>>> 5b6022f3b41d8160d4f95947afba2202b86e13ca
     return con
 
 def get_data_processing_start_date(batch_id):
@@ -124,11 +106,7 @@ try:
     url=None
     start_time=get_data_processing_start_date(1)
     start_time=dtime.strptime(start_time, "%Y-%m-%d")
-<<<<<<< HEAD
     print(start_time.date()) 
-=======
-    print(start_time.date())
->>>>>>> 5b6022f3b41d8160d4f95947afba2202b86e13ca
     flag=True
     while flag:
         d=datetime.datetime.date(datetime.datetime.now())
@@ -141,7 +119,6 @@ try:
         print(url)
         start_time=start_time+datetime.timedelta(days=1)
 
-<<<<<<< HEAD
         #req = r.Request(url)
         #response = r.urlopen(req)
         #the_page = response.read() 
@@ -150,13 +127,6 @@ try:
             the_page = response.read()
         args=[]
         for line in the_page.decode('utf-8').splitlines(True):
-=======
-        req = r.Request(url)
-        response = r.urlopen(req)
-        the_page = response.read()
-        args=[]
-        for line in the_page.decode("utf-8").split("\r\n"):
->>>>>>> 5b6022f3b41d8160d4f95947afba2202b86e13ca
             if line:
                 if line[0] in ['1','2','3','4','5','6','7','8','9','0']:
                     fields=line.split(";")
@@ -165,10 +135,7 @@ try:
                     nav_value= 0 if fields[4]=="N.A." else float(fields[4])
                     args.append((int(scheme_code),nav_date,nav_value))
         cur=con.cursor()
-<<<<<<< HEAD
         print(len(args))
-=======
->>>>>>> 5b6022f3b41d8160d4f95947afba2202b86e13ca
         try:
             stmt = "INSERT IGNORE INTO mutual_funds_nav (scheme_code, nav_date,nav_value) values(%s,%s,%s)"
             cur.executemany(stmt, args)
@@ -183,43 +150,28 @@ try:
     msg = Message("Daily mutual fund nav batch success",sender="communications@stocksandcharts.in",recipients=["hegman12@gmail.com"])
     msg.body = "testing"
     msg.html = """<div'>
-<<<<<<< HEAD
     <p>Successfully scraped data for {start_time}
 Total rows processed {rownum}</p>
 processed data from {start_time} to {end_time}
     </div>""".format(start_time=start_time.date(),rownum=len(args),end_time=datetime.datetime.date(datetime.datetime.now()))
-=======
-    <p>Successfully scraped data for {start_time}</p>
-    </div>""".format(start_time=start_time)
->>>>>>> 5b6022f3b41d8160d4f95947afba2202b86e13ca
     with app.app_context():
         mail.send(msg)
     con.close()
 except Exception as e:
     log(1,"unable to scrap data for url: {url} , error: {error}".format(url=url,error=e))
     msg = Message("Daily mutual fund nav batch error",sender="communications@stocksandcharts.in",recipients=["hegman12@gmail.com"])
-<<<<<<< HEAD
     msg.body = ''.join(str(e))
     msg.html = """<div'>
     <p>Error scrapping data for {start_time}\n
      {error}
     </div>""".format(start_time=start_time,error=e)
-=======
-    msg.body = "testing"
-    msg.html = """<div'>
-    <p>Error scrapping data for {start_time}</p>
-    </div>""".format(start_time=start_time)
->>>>>>> 5b6022f3b41d8160d4f95947afba2202b86e13ca
     with app.app_context():
         mail.send(msg)
     con.close()
 finally:
     con.close()
 
-<<<<<<< HEAD
 
 
 
 
-=======
->>>>>>> 5b6022f3b41d8160d4f95947afba2202b86e13ca
