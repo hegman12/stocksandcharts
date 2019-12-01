@@ -1,0 +1,30 @@
+.login-page {
+    display: block;
+    top: 50%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.login-page button {
+    font-size: 1em;
+    background: lightgreen;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.login-page label {
+    display: inline-block;
+    font-family: calibri;
+    font-size: 1em;
+}
+
+.login-page input[type="text"] {
+    font-size: 1em;
+    font-family: calibri;
+    border: 1px solid;
+    margin-left: 10px;
+    display: inline-block;
+}
