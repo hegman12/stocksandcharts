@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-light" style="background-color: #7fc4f5">
+        <h4>DAILY ANALYTICS</h4>
+    </nav>
+
+    <div class="container-fluid">
+        <p id="vw_dividend_opportunities" class="h4">Dividend opportunities</p>
+        <table id="vw_dividend_opportunities_tbl" class="table table-hover table-striped table-light">
+            <thead>
+                <tr>
+                    <th scope="col">Stock name</th>
+                    <th scope="col">Dividend%</th>
+                    <th scope="col">Ex date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s,w,v in vw_dividend_opportunities_tbl %}
+                <tr>
+                    <th scope="row">{{s}}</th>
+                    <td>{{w}}</td>
+                    <td>{{v}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+        <p id="vw_mc_gt_10kcr_dpct_gt_60" class="h4">Big companies(MC>10kCr) with good volume(>60% delivery)</p>
+        <table id="vw_mc_gt_10kcr_dpct_gt_60_tbl" class="table table-hover table-striped table-light">
+            <thead>
+                <tr>
+                    <th scope="col">Stock name</th>
+                    <th scope="col">MarketCap</th>
+                    <th scope="col">Delivery %</th>
+                    <th scope="col">Volume</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s,m,d,v in vw_mc_gt_10kcr_dpct_gt_60_tbl %}
+                <tr>
+                    <th scope="row">{{s}}</th>
+                    <td>{{m}}</td>
+                    <td>{{d}}</td>
+                    <td>{{v}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p id="vw_bought_sold_perct" class="h4">SAST shares bought sold today</p>
+        <table id="vw_bought_sold_perct_tbl" class="table table-hover table-striped table-light">
+            <thead>
+                <tr>
+                    <th scope="col">Stock name</th>
+                    <th scope="col">Aquirer</th>
+                    <th scope="col">Bought/Sold %</th>
+                    <th scope="col">After aquisition%</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s,m,d,v in vw_bought_sold_perct_tbl %}
+                <tr>
+                    <th scope="row">{{s}}</th>
+                    <td>{{m}}</td>
+                    <td>{{d}}</td>
+                    <td>{{v}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p id="vw_how_much_retails_lost" class="h4">How much retails lost in stocks?</p>
+        <table id="vw_how_much_retails_lost_tbl" class="table table-hover table-striped table-light">
+            <thead>
+                <tr>
+                    <th scope="col">Stock name</th>
+                    <th scope="col">% of wealth lost</th>
+                    <th scope="col">Value lost in Cr</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s,w,v in vw_how_much_retails_lost_tbl %}
+                <tr>
+                    <th scope="row">{{s}}</th>
+                    <td>{{w}}</td>
+                    <td>{{v}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>

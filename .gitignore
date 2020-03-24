@@ -1,0 +1,16 @@
+app_config.py
+.vscode/settings.json
+temp_update.py
+__pycache__/api.cpython-36.pyc
+__pycache__/app_config.cpython-36.pyc
+__pycache__/app.cpython-36.pyc
+__pycache__/auth.cpython-36.pyc
+__pycache__/equity.cpython-36.pyc
+__pycache__/financeData.cpython-36.pyc
+__pycache__/mutualfunds.cpython-36.pyc
+__pycache__/pledgedData.cpython-36.pyc
+__pycache__/quoteData.cpython-36.pyc
+__pycache__/shareHoldingData.cpython-36.pyc
+__pycache__/stocks.cpython-36.pyc
+__pycache__/utils.cpython-36.pyc
+utils.py

@@ -76,7 +76,7 @@ function setAMC(id, value, o) {
 
 function getSchemeCategory(id) {
     if (amc1 != null) {
-        var url = "/mutualFunds/schemeCat/" + amc1 + "/" + amc2;
+        var url = "/mutualfunds/schemeCat/" + amc1 + "/" + amc2;
         //var url = "/category/3266" + "/" + mode + end_url;
         d3.json(url, {
             headers: {
@@ -122,7 +122,7 @@ function schemeCategoryClick(d, i) {
 
 function getSchemeNav(id) {
     if (amc1 != null) {
-        var url = "/mutualFunds/schemeNav/" + amc1 + "/" + amc2 + "/" + scheme_cat_id;
+        var url = "/mutualfunds/schemeNav/" + amc1 + "/" + amc2 + "/" + scheme_cat_id;
         //var url = "/category/3266" + "/" + mode + end_url;
         d3.json(url, {
             headers: {
@@ -169,7 +169,7 @@ function updateSchemeNav(data) {
 }
 
 function call() {
-    var url = "/mutualFunds/performance/" + schemeNavId1 + "/" + schemeNavId2 + "/" + numDays;
+    var url = "/mutualfunds/performance/" + schemeNavId1 + "/" + schemeNavId2 + "/" + numDays;
     //var url = "/category/3266" + "/" + mode + end_url;
     d3.json(url, {
         headers: {

@@ -17,7 +17,7 @@ options = webdriver.ChromeOptions()
 options.add_argument('user-data-dir=D:\\stock_prices')
 driver=webdriver.Chrome(chrome_options=options)
 
-con=db.connect(host="localhost",user="<your user>",password="<your pwd>",auth_plugin='mysql_native_password',database="<your DB>")
+con=db.connect(host="localhost",user="stocks",password="stocks",auth_plugin='mysql_native_password',database="stocks")
 driver.get("https://www.bseindia.com/markets/equity/EQReports/StockPrcHistori.aspx?flag=0")
 
 def fetch_all_stocks():
@@ -42,8 +42,8 @@ for stock in stocks:
     try:
         if str(stock["bse_id"]) not in bse_id and str(stock["bse_id"])[0]!="9":
             driver.find_element_by_xpath("//*[@id='ContentPlaceHolder1_rdbMonthly']").click()
-            driver.find_element_by_xpath("//select[@id='ContentPlaceHolder1_cmbMonthly']/option[text()='Jan']").click()
-            driver.find_element_by_xpath("//select[@id='ContentPlaceHolder1_cmbMYear']/option[text()='2010']").click()
+            driver.find_element_by_xpath("//select[@id='ContentPlaceHolder1_cmbMonthly']/option[text()='Aug']").click()
+            driver.find_element_by_xpath("//select[@id='ContentPlaceHolder1_cmbMYear']/option[text()='2019']").click()
             element=driver.find_element_by_xpath("//*[@id='ContentPlaceHolder1_smartSearch']")
             element.clear()
             element.send_keys(stock["bse_id"])

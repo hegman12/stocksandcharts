@@ -9,11 +9,12 @@ import js2py
 import json
 import datetime
 import urllib.request as requests
+import app_config
 
 
 capabilities=DesiredCapabilities.CHROME.copy()
 
-myProxy = "http://86.100.72.118:34163"
+myProxy = "http://173.245.239.12:17145"
 
 proxy = Proxy({
 'proxyType': ProxyType.MANUAL,
@@ -28,7 +29,7 @@ options = webdriver.ChromeOptions()
 options.add_argument('headless')
 options.add_argument("--disable-extensions")
 driver=webdriver.Chrome(chrome_options=options,desired_capabilities=capabilities)
-con=db.connect(host="localhost",user="<your user>",password="<your pwd>",auth_plugin='mysql_native_password',database="<your DB>")
+con=db.connect(host=app_config.DB_HOST,user=app_config.DB_USER,password=app_config.DB_PASS,auth_plugin='mysql_native_password',database=app_config.DB_NAME)
 
 def get_nse_stocks():
     f=open("C:\\Users\\manju\\Desktop\\nse_stocks.txt")
@@ -41,8 +42,8 @@ def get_all_last_1_months(start,limit):
     out={"rows":[]}
     try:
         url="https://www.nseindia.com/corporates/corpInfo/equities/getFinancialResults.jsp?start={start}&limit={limit}&symbol=&industry=&period=Quarterly&broadcastPeriod=Last%203%20Months".format(start=start,limit=limit)
-        headers={'mode': 'no-cors','User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.3'}
-        req = requests.Request(url, None, headers)
+        #headers={'mode': 'no-cors','User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Mobile Safari/537.36','Content-Type': 'text/html;charset=ISO-8859-1','Host':'www.nseindia.com'}
+        req = requests.Request(url, None)
         response = requests.urlopen(req)
         the_page = response.read()
         js="function a() {return JSON.stringify("+the_page.decode("ascii")+")} a()"
@@ -324,5 +325,7 @@ def start_batch(type):
 5th anything
 6th  E,A,, segment table will be on or off for this
 """
-start_batch("monthly")
-
+try:
+    start_batch("monthly")
+finally:
+    con.close()

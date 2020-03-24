@@ -60,7 +60,7 @@
  function getSearchResults(id, lbl, type) {
      var searchString = document.getElementById(lbl).value
      if (searchString.length > 2) {
-         var url = "/search/" + searchString
+         var url = "/api/search/" + searchString
          d3.json(url, {
              headers: {
                  "Authorization": "Basic " + token
@@ -174,7 +174,6 @@
 
  function getResultCategory(id, stockID) {
      var end_url = "/" + totalQtr
-     console.log(totalQtr)
      var singleCompare = document.getElementById('singleCompare').checked
      var mode = ''
      if (singleCompare == true && secondaryStockID != null) {
@@ -183,7 +182,7 @@
      } else {
          mode = 'S';
      }
-     var url = "/category/" + stockID + "/" + mode + end_url;
+     var url = "/api/category/" + stockID + "/" + mode + end_url;
      //var url = "/category/3266" + "/" + mode + end_url;
      d3.json(url, {
          headers: {
@@ -243,7 +242,7 @@
      } else {
          mode = 'S';
      }
-     var url = "/type/" + primaryStockID + "/" + mode + "/" + url_end
+     var url = "/api/type/" + primaryStockID + "/" + mode + "/" + url_end
          //var url = "/type/3266" + "/" + mode + "/" + url_end
      d3.json(url, {
          headers: {
@@ -341,12 +340,12 @@
          } else {
              mode = 'S';
          }
-         var fromQtr = 102 - totalQtr;
+         var fromQtr = 104 - totalQtr;
          if (getPrice1) {
              priceOne = "&price1=Y";
          }
 
-         var url = "/graph/" + primaryStockID + "?mode=" + mode + "&resultTypeId=" + resultTypeId + "&fromQtr=" + fromQtr + "&totalQtr=" + 20 + "&totalQtrIncome=" + totalQtr + "&categoryId=" + resultCatId + priceOne + end_url;
+         var url = "/api/graph/" + primaryStockID + "?mode=" + mode + "&resultTypeId=" + resultTypeId + "&fromQtr=" + fromQtr + "&totalQtr=" + 20 + "&totalQtrIncome=" + totalQtr + "&categoryId=" + resultCatId + priceOne + end_url;
 
          d3.json(url, {
              headers: {
@@ -445,6 +444,7 @@
  }
 
  function render_price(svg, width, height, seperation_distance, price, priceMax) {
+
      x = linspace(seperation_distance, width, price.length)
          //var n = price.length;
      data = line_cordinates(x, price);
